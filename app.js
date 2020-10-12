@@ -40,3 +40,18 @@ radios[2].value = pokemonThree.id;
 images[2].src = pokemonThree.url_image;
 
 // set event listeners to update state and DOM
+
+function handleClick() {
+    next.classList.toggle('hidden');
+
+    for (let i = 0; i < radios.length; i++) {
+        radios[i].disabled = true;
+        images[i].style.opacity = .5;
+    }
+}
+
+for (let i = 0; i< radios.length; i++) {
+    radios[i].addEventListener('change', (e) => {
+        console.log(e.target.value);
+    });
+}
