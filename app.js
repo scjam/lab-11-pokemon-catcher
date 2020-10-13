@@ -1,14 +1,16 @@
 // import functions and grab DOM elements
-import { rawPokemonData } from './pokemon.js';
+import { pokemonData } from './pokemon.js';
+//import { findById, getFromLocalStorage, setInLocalStorage } from './utils.js';
 
 const radios = document.querySelectorAll('input');
 const next = document.querySelector('button');
-const capture = document.querySelector('#capture');
+//const capture = document.querySelector('#capture');
 const images = document.querySelectorAll('label > img');
 
 // initialize state
 let pokemonCaptured = 0;
-let pokemonEncountered = 0;
+const pokemonEncountered = [];
+
 
 function getRandomPokemon(someArray) {
     const index = Math.floor(Math.random() * someArray.length);
@@ -17,29 +19,59 @@ function getRandomPokemon(someArray) {
 
 }
 
-let pokemonOne = getRandomPokemon(rawPokemonData); 
-let pokemonTwo = getRandomPokemon(rawPokemonData); 
-let pokemonThree = getRandomPokemon(rawPokemonData); 
+let pokemonOne, pokemonTwo, pokemonThree = 0; 
 
-while (pokemonOne.id === pokemonTwo.id) {
-    pokemonOne = getRandomPokemon(rawPokemonData);
+function randomizePokemon() {
+    
+    pokemonOne = getRandomPokemon(pokemonData);
+    pokemonTwo = getRandomPokemon(pokemonData);
+    pokemonThree = getRandomPokemon(pokemonData);
+
+    while (pokemonOne.id === pokemonTwo.id) {
+        pokemonOne = getRandomPokemon(pokemonData);
+    }
+    while (pokemonTwo.id === pokemonThree.id) {
+        pokemonTwo = getRandomPokemon(pokemonData);
+    }
+    while (pokemonThree.id === pokemonOne.id) {
+        pokemonThree = getRandomPokemon(pokemonData);
+    }
+
+    radios[0].value = pokemonOne.id;
+    console.log(pokemonOne);
+    images[0].src = pokemonOne.url_image;
+
+    radios[1].value = pokemonTwo.id;
+    images[1].src = pokemonTwo.url_image;
+
+    radios[2].value = pokemonThree.id;
+    images[2].src = pokemonThree.url_image;
+
 }
-while (pokemonTwo.id === pokemonThree.id) {
-    pokemonTwo = getRandomPokemon(rawPokemonData);
-}
-while (pokemonThree.id === pokemonOne.id) {
-    pokemonThree = getRandomPokemon(rawPokemonData);
-}
 
-radios[0].value = pokemonOne.id;
-images[0].src = pokemonOne.url_image;
+randomizePokemon();
+pokemonEncountered.push(
+    { 
+        pokemon: pokemonOne.pokemon,
+        encountered: 0,
+        captured: 0,
+        
+    }, 
+    { 
+        pokemon: pokemonTwo.pokemon,
+        encountered: 0,
+        captured: 0,
+        
+    },
+    { 
+        pokemon: pokemonThree.pokemon,
+        encountered: 0,
+        captured: 0,
+        
+    });
 
-radios[1].value = pokemonTwo.id;
-images[1].src = pokemonTwo.url_image;
-
-radios[2].value = pokemonThree.id;
-images[2].src = pokemonThree.url_image;
-
+console.log(pokemonEncountered);
+//addEventListener(randomizePokemon);
 // set event listeners to update state and DOM
 
 for (let i = 0; i < radios.length; i++) {
@@ -57,10 +89,14 @@ for (let i = 0; i < radios.length; i++) {
         const playerCapturedPokemon = e.target.value === pokemonCaptured.id;
         const playerEncounteredPokemon = e.target.value === pokemonEncountered.id;
 
+        //const pokemonInCart = findById(theIdOfThePokemonTheyCaptured, pokemonShoppingCart);
+        //pokemonInCart.captured++;
+        //savePokemon(pokemonShoppingCart)
+
+        console.log(playerCapturedPokemon);
+        console.log(playerEncounteredPokemon);
+
         //go into pokemon array and increment times captured i.e. shopping cart pokemon. e.target.value is used to decide which pokemon to mutate
 
-        if (playerCapturedPokemon) {
-            
-        }
     });
 }
