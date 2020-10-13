@@ -8,6 +8,7 @@ const images = document.querySelectorAll('label > img');
 
 // initialize state
 let pokemonCaptured = 0;
+let pokemonEncountered = 0;
 
 function getRandomPokemon(someArray) {
     const index = Math.floor(Math.random() * someArray.length);
@@ -41,17 +42,25 @@ images[2].src = pokemonThree.url_image;
 
 // set event listeners to update state and DOM
 
-function handleClick() {
-    next.classList.toggle('hidden');
-
-    for (let i = 0; i < radios.length; i++) {
-        radios[i].disabled = true;
-        images[i].style.opacity = .5;
-    }
-}
-
-for (let i = 0; i< radios.length; i++) {
+for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener('change', (e) => {
-        console.log(e.target.value);
+        
+        pokemonCaptured++;
+        pokemonEncountered++;
+        next.classList.toggle('hidden');
+
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].disabled = true;
+            images[i].style.opacity = .5;
+        }
+
+        const playerCapturedPokemon = e.target.value === pokemonCaptured.id;
+        const playerEncounteredPokemon = e.target.value === pokemonEncountered.id;
+
+        //go into pokemon array and increment times captured i.e. shopping cart pokemon. e.target.value is used to decide which pokemon to mutate
+
+        if (playerCapturedPokemon) {
+            
+        }
     });
 }
