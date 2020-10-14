@@ -36,11 +36,16 @@ function renderLineItems(pokemon) {
 }
 
 const resultsData = getFromLocalStorage('POKEMON');
-const pokemon = resultsData.map((item) => {
+const onlyCaptures = resultsData.filter((item) => item.captured);
+console.log(onlyCaptures);
+
+const pokemon = onlyCaptures.map((item) => {
     return item.name;
 });
-const captured = resultsData.map((item) => {
+
+const captured = onlyCaptures.map((item) => {
     return item.captured;
+
 });
 
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -49,23 +54,31 @@ var myChart = new Chart(ctx, {
     data: {
         labels: pokemon,
         datasets: [{
-            label: '# of Votes',
+            label: 'Pokemon Game',
             data: captured,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(3, 7, 30, 0.2)',
+                'rgba(55, 6, 23, 0.2)',
+                'rgba(106, 4, 15, 0.2)',
+                'rgba(157, 2, 8, 0.2)',
+                'rgba(208, 0, 0, 0.2)',
+                'rgba(220, 47, 2, 0.2)',
+                'rgba(232, 93, 4, 0.2)',
+                'rgba(244, 140, 6, 0.2)',
+                'rgba(250, 163, 7, 0.2)',
+                'rgba(255, 186, 8, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(3, 7, 30, 1)',
+                'rgba(55, 6, 23, 1)',
+                'rgba(106, 4, 15, 1)',
+                'rgba(157, 2, 8, 1)',
+                'rgba(208, 0, 0, 1)',
+                'rgba(220, 47, 2, 1)',
+                'rgba(232, 93, 4, 1)',
+                'rgba(244, 140, 6, 1)',
+                'rgba(250, 163, 7, 1)',
+                'rgba(255, 186, 8, 1)'
             ],
             borderWidth: 1
         }]

@@ -25,13 +25,9 @@ function randomizePokemon() {
     pokemonTwo = getRandomPokemon(pokemonData);
     pokemonThree = getRandomPokemon(pokemonData);
 
-    while (pokemonOne.id === pokemonTwo.id) {
+    while (pokemonOne.id === pokemonTwo.id || pokemonTwo.id === pokemonThree.id || pokemonThree.id === pokemonOne.id) {
         pokemonOne = getRandomPokemon(pokemonData);
-    }
-    while (pokemonTwo.id === pokemonThree.id) {
         pokemonTwo = getRandomPokemon(pokemonData);
-    }
-    while (pokemonThree.id === pokemonOne.id) {
         pokemonThree = getRandomPokemon(pokemonData);
     }
 
@@ -106,7 +102,7 @@ for (let i = 0; i < radios.length; i++) {
         
 
         for (let i = 0; i < radios.length; i++) {
-            images[i].style.opacity = .5;
+            radios[i].checked = false;
         }
 
         randomizePokemon();
