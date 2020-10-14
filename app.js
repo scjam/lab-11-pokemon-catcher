@@ -114,9 +114,6 @@ for (let i = 0; i < radios.length; i++) {
             setInLocalStorage(POKEMON, resultsArray);
             window.location = 'results.html';
         }
-        
-        console.log(resultsArray);
-
 
     });
 }
