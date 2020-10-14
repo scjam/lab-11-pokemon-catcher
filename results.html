@@ -9,24 +9,33 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/home.css">
-    <title>Pokecatcher Rsults</title>
+    <title>Pokecatcher Results</title>
 </head>
 
 <body>
     <header>
         <h1>Results Page</h1>
-        <div class="gutter-right logo">
-            <img src="assets/big-logo.png"/>
-        </div>
+        <button id="reset">New Game</button>
     </header>
     <main>
-        <div id=results></div>
+        <div id=results>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pokemon</th>
+                        <th>Encountered</th>
+                        <th>Captured</th>
+                    </tr>
+                </thead>
+                <tbody id="table-results"></tbody>
+            </table>
+        </div>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2020 Alchemy Code Lab</div>
     </footer>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="results.js"></script>
 </body>
 
 </html>

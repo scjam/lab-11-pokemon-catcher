@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
 import { pokemonData } from './pokemon.js';
-import { findById } from './utils.js';
+import { findById, setInLocalStorage } from './utils.js';
 
 const radios = document.querySelectorAll('input');
 const images = document.querySelectorAll('label > img');
@@ -8,6 +8,7 @@ const images = document.querySelectorAll('label > img');
 // initialize state
 let totalRounds = 0;
 const resultsArray = [];
+const POKEMON = 'POKEMON';
 
 function getRandomPokemon(someArray) {
     const index = Math.floor(Math.random() * someArray.length);
@@ -110,13 +111,10 @@ for (let i = 0; i < radios.length; i++) {
 
         randomizePokemon();
         if (totalRounds === 10) {
-            window.location.href = './results.html';
+            setInLocalStorage(POKEMON, resultsArray);
+            window.location = 'results.html';
         }
-        // const playerCapturedPokemon = e.target.value === pokemonCaptured.id;
-        // const playerEncounteredPokemon = e.target.value === pokemonEncountered.id;
         
-        
-
         console.log(resultsArray);
 
 
